@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/navbar';
 import Banner from './components/banner';
 import TechCard from './components/card';
+import Stack from './components/Stack';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -16,23 +17,27 @@ function App() {
       .then(json => {
         setData(json);
         setLoad(false);
+      })
+      .catch(() => {
+        toast.error('Failed to load data');
+        setLoad(false);
       });
   }, []);
 
   const addItem = (item) => {
-    const exists = stack.find(s => s.id === item.id);
-    if (exists) {
-      toast.warning('Already in stack!');
+    const ex = stack.find(s => s.id === item.id);
+    if (ex) {
+      toast.warning(`${item.name} is already in your stack!`);
       return;
     }
     setStack([...stack, item]);
-    toast.success(`${item.name} added!`);
+    toast.success(`${item.name} added to stack!`);
   };
 
   const rmItem = (id) => {
-    const filtered = stack.filter(s => s.id !== id);
-    setStack(filtered);
-    toast.info('Removed from stack');
+    const it = stack.find(s => s.id === id);
+    setStack(stack.filter(s => s.id !== id));
+    toast.info(`${it.name} removed from stack`);
   };
 
   const rmAll = () => {
@@ -44,17 +49,23 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <Banner />
-      
+
       <div className="max-w-7xl mx-auto px-4 py-12">
         <h2 className="text-3xl font-bold mb-2">
-          Explore the <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600">Technologies</span>
+          Explore the{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600">
+            Technologies
+          </span>
         </h2>
         <p className="text-gray-500 mb-8">Pick one technology per category to build your ideal stack.</p>
-        
+
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {load ? (
-              <div className="col-span-full text-center py-10 text-gray-500">Loading...</div>
+              <div className="col-span-full text-center py-16">
+                <div className="inline-block w-10 h-10 border-4 border-gray-200 border-t-pink-500 rounded-full animate-spin"></div>
+                <p className="text-gray-500 mt-4">Loading technologies...</p>
+              </div>
             ) : (
               data.map((item, i) => (
                 <TechCard key={i} item={item} stack={stack} addItem={addItem} />
@@ -63,43 +74,12 @@ function App() {
           </div>
 
           <div className="w-full lg:w-80">
-            <div className="bg-white rounded-xl border p-6 sticky top-24">
-              <h3 className="text-xl font-bold mb-1">Your Stack</h3>
-              <p className="text-sm text-gray-400 mb-4">
-                {stack.length === 0 ? 'No technologies selected yet.' : `${stack.length} Technology Selected`}
-              </p>
-              
-              {stack.length === 0 ? (
-                <div className="border-2 border-dashed rounded-lg p-8 text-center text-gray-400 text-sm">
-                  Your stack is empty.
-                </div>
-              ) : (
-                <div className="space-y-3 mb-4">
-                  {stack.map((item, i) => (
-                    <div key={i} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border">
-                      <div className="flex items-center gap-3">
-                        <img src={item.icon} alt="" className="w-6 h-6" />
-                        <div>
-                          <p className="font-semibold text-sm">{item.name}</p>
-                          <p className="text-xs text-gray-500">{item.category}</p>
-                        </div>
-                      </div>
-                      <button onClick={() => rmItem(item.id)} className="text-gray-400 hover:text-red-500 font-bold">✕</button>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {stack.length > 0 && (
-                <button onClick={rmAll} className="w-full py-2 border border-red-200 text-red-500 rounded-lg hover:bg-red-50 text-sm font-medium">
-                  Remove All
-                </button>
-              )}
-            </div>
+            <Stack stack={stack} rmItem={rmItem} rmAll={rmAll} />
           </div>
         </div>
       </div>
-      <ToastContainer position="bottom-right" />
+
+      <ToastContainer position="bottom-right" autoClose={2000} />
     </div>
   );
 }
