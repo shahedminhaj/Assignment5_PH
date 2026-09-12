@@ -1,5 +1,3 @@
-import { toast } from 'react-toastify';
-
 function Stack({ stack, rmItem, rmAll }) {
   const cnt = stack.length;
 

@@ -4,7 +4,7 @@ function Banner() {
       <div className="flex-1">
         <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
           Build Your Ideal <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-1 via-brand-2 to-brand-3">
             Development Stack
           </span>
         </h1>
@@ -12,7 +12,7 @@ function Banner() {
           Explore frontend, backend, database, and tooling options, compare them side by side, and put together the stack that fits your next project.
         </p>
         <div className="flex gap-4">
-          <button className="px-6 py-3 rounded-lg text-white font-medium bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 hover:opacity-90">
+          <button className="px-6 py-3 rounded-lg text-white font-medium bg-gradient-to-r from-brand-1 via-brand-2 to-brand-3 hover:opacity-90">
             Explore Technologies
           </button>
           <button className="px-6 py-3 rounded-lg font-medium border-2 border-gray-200 hover:border-gray-300">

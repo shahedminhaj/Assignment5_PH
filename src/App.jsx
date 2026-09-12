@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/navbar';
 import Banner from './components/banner';
 import TechCard from './components/card';
-import Stack from './components/Stack';
+import Stack from './components/stack';
+import Footer from './components/footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -53,7 +54,7 @@ function App() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         <h2 className="text-3xl font-bold mb-2">
           Explore the{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-1 via-brand-2 to-brand-3">
             Technologies
           </span>
         </h2>
@@ -79,6 +80,7 @@ function App() {
         </div>
       </div>
 
+      <Footer />
       <ToastContainer position="bottom-right" autoClose={2000} />
     </div>
   );
