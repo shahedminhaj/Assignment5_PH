@@ -13,10 +13,13 @@ function App() {
   const [load, setLoad] = useState(true);
 
   useEffect(() => {
-    fetch('/data.json')
-      .then(res => res.json())
-      .then(json => {
-        setData(json);
+    fetch('./data.json')
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to load data');
+        return res.json();
+      })
+      .then((json) => {
+        setData(Array.isArray(json) ? json : []);
         setLoad(false);
       })
       .catch(() => {
@@ -26,19 +29,26 @@ function App() {
   }, []);
 
   const addItem = (item) => {
-    const ex = stack.find(s => s.id === item.id);
-    if (ex) {
-      toast.warning(`${item.name} is already in your stack!`);
-      return;
-    }
-    setStack([...stack, item]);
-    toast.success(`${item.name} added to stack!`);
+    setStack((prev) => {
+      const ex = prev.some(s => s.id === item.id);
+      if (ex) {
+        toast.warning(`${item.name} is already in your stack!`);
+        return prev;
+      }
+
+      toast.success(`${item.name} added to stack!`);
+      return [...prev, item];
+    });
   };
 
   const rmItem = (id) => {
     const it = stack.find(s => s.id === id);
-    setStack(stack.filter(s => s.id !== id));
-    toast.info(`${it.name} removed from stack`);
+    setStack(prev => prev.filter(s => s.id !== id));
+    if (it) {
+      toast.info(`${it.name} removed from stack`);
+    } else {
+      toast.info('Item removed from stack');
+    }
   };
 
   const rmAll = () => {

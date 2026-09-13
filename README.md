@@ -1,18 +1,53 @@
 # Dev Stack Builder
 A React app for exploring and building your ideal development stack.
 
+## Project structure
+```text
+DevStack/
+├── public/
+│   ├── assets/
+│   │   ├── banner-stack.png
+│   │   └── logo-text.png
+│   ├── data.json
+│   ├── favicon.svg
+│   └── icons.svg
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── banner.jsx
+│   │   ├── card.jsx
+│   │   ├── footer.jsx
+│   │   ├── navbar.jsx
+│   │   └── stack.jsx
+│   ├── App.jsx
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
+├── index.html
+├── package.json
+├── vite.config.js
+├── eslint.config.js
+├── README.md
+└── dist/  (generated after build)
+```
+
 ## Technologies Used
-React.js (Vite)
-Tailwind CSS v4
-React-Toastify
-JavaScript (ES6+)
-JSON
+- React.js (Vite)
+- Tailwind CSS v4
+- React-Toastify
+- JavaScript (ES6+)
+- JSON
 
 ## Features
-1.Interactive tech cards with ratings and badges
-2.Your Stack sidebar with add/remove/clear
-3.Toast notifications
+1. Interactive tech cards with ratings and badges
+2. Your Stack sidebar with add/remove/clear
+3. Toast notifications
+4. Deployment-safe asset configuration
 
+## Deployment notes
+- The app reads data from `/data.json` in the public folder.
+- Static files are stored under `public/` so they are available after deployment.
+- The Vite config uses a relative base path and host settings for better deployment compatibility.
 
 ## React Questions
 

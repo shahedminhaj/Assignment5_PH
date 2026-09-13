@@ -7,13 +7,13 @@ function Navbar() {
     <nav className="sticky top-0 z-50 bg-white border-b">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <div className="hidden md:flex items-center">
-          <img src="/assets/logo-text.png" alt="DevStack" className="h-8" />
+          <img src="./assets/logo-text.png" alt="DevStack" className="h-8" />
         </div>
 
         <button onClick={() => setOpen(!open)} className="md:hidden text-2xl">☰</button>
 
         <div className="md:hidden flex items-center">
-          <img src="/assets/logo-text.png" alt="DevStack" className="h-6" />
+          <img src="./assets/logo-text.png" alt="DevStack" className="h-6" />
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">

@@ -21,7 +21,7 @@ function Banner() {
         </div>
       </div>
       <div className="flex-1 flex justify-center">
-        <img src="/assets/banner-stack.png" alt="Stack" className="w-full max-w-md" />
+        <img src="./assets/banner-stack.png" alt="Stack" className="w-full max-w-md" />
       </div>
     </section>
   );

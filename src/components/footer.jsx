@@ -4,7 +4,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <div className="flex items-center mb-3">
-            <img src="/assets/logo-text.png" alt="DevStack" className="h-7" />
+            <img src="./assets/logo-text.png" alt="DevStack" className="h-7" />
           </div>
           <p className="text-sm text-gray-500 mb-4">
             Curated tools, technologies, and resources for developers building modern software.
