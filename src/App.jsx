@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/navbar';
 import Banner from './components/banner';
 import TechCard from './components/card';
-import Stack from './components/stack';
+import Stack from './components/Stack';
 import Footer from './components/footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
